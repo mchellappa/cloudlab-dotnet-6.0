@@ -1,19 +1,18 @@
 # cloudlab-dotnet-6.0
 A tutorial to walk through the dotnet basics
 
-dotnet new webapi -o CupcakeApi
+```dotnet new webapi -o CupcakeApi
 cd CupcakeApi
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
 code -r ../CupcakeApi
-
-
 dotnet dev-certs https --trust
+```
 
 Add a folder named Models.
 
 Add a CupcakeItem.cs file to the Models folder with the following code:
 
-``csharp
+```csharp
 
 namespace CupcakeApi.Models
 {
@@ -25,10 +24,10 @@ namespace CupcakeApi.Models
     }
 }
 
-``
+```
 Add a CupcakeContext.cs file to the Models folder.
 
-``csharp
+```csharp
 
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
@@ -46,12 +45,12 @@ namespace CupcakeApi.Models
     }
 }
 
-``
+```
 
 
 Update Program.cs with the following code:
 
-``csharp
+```csharp
 using Microsoft.EntityFrameworkCore;
 using CupcakeApi.Models;
 
@@ -85,15 +84,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-``
+```
 
 Run the following commands from the project folder, that is, the CupcakeApi folder:
 
-``cmd
+```cmd
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name CupcakeItemsController -async -api -m CupcakeItem -dc CupcakeContext -outDir Controllers
-``
+```
 
