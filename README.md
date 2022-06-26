@@ -8,6 +8,15 @@ code -r ../CupcakeApi
 dotnet dev-certs https --trust
 ```
 
+Let's run the app using
+```
+dotnet run
+```
+
+In a browser, navigate to https://localhost:<port>/swagger, where <port> is the randomly chosen port number displayed in the output.
+    
+>Let's add more functionality
+
 Add a folder named Models.
 
 Add a CupcakeItem.cs file to the Models folder with the following code:
