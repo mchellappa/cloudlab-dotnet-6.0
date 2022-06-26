@@ -1,7 +1,8 @@
 # cloudlab-dotnet-6.0
 A tutorial to walk through the dotnet basics
 
-```dotnet new webapi -o CupcakeApi
+```
+dotnet new webapi -o CupcakeApi
 cd CupcakeApi
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
 code -r ../CupcakeApi
