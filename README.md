@@ -96,3 +96,33 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name CupcakeItemsController -async -api -m CupcakeItem -dc CupcakeContext -outDir Controllers
 ```
 
+This tutorial uses http-repl to test the web API.
+
+>Run the following command at a command prompt:
+
+```
+dotnet tool install -g Microsoft.dotnet-httprepl
+```
+
+Test the API
+
+Run the app using
+```
+dotnet run
+```
+
+Open a new terminal window, and run the following commands. If your app uses a different port number, replace 5001 in the httprepl command with your port number.
+
+```
+httprepl https://localhost:5001/api/cupcakeitems
+post -h Content-Type=application/json -c "{"name":"Vanilla Cupcake","description":"Vanilla Cupcake"}"
+```
+
+To test the location header, copy and paste it into an httprepl get command.
+
+The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace connect with httprepl in the following commands:
+
+```
+connect https://localhost:5001/api/cupcakeitems/1
+get
+```
