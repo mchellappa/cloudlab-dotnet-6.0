@@ -15,6 +15,48 @@ dotnet run
 
 In a browser, navigate to https://localhost:<port>/swagger, where <port> is the randomly chosen port number displayed in the output.
     
+    
+    
+ ```
+  [Fact]
+    public async void RunGetCupcakes_validate_success()
+    {
+    var options = new DbContextOptionsBuilder<CupcakeContext>()
+            .UseInMemoryDatabase(databaseName: "CupcakesDatabase")
+            .Options;
+
+        // Insert seed data into the database using one instance of the context
+        using (var context = new CupcakeContext(options))
+        {
+            context.CupcakeItems.Add(new CupcakeApi.Models.CupcakeItem {Id = 1, Name = "Vanilla Cupcake", Description = "1 Icecream"});
+          
+            context.SaveChanges();
+        }
+
+        // Use a clean instance of the context to run the test
+        using (var context = new CupcakeContext(options))
+        {
+            
+
+             var controller = new CupcakeItemsController(context);
+
+    // Act
+            var result = await controller.GetCupcakeItems();
+
+            // Assert
+            var actionResult = Assert.IsType<ActionResult<IEnumerable<CupcakeItem>>>(result);
+            var returnValue = Assert.IsType<List<CupcakeItem>>(actionResult.Value);
+            var idea = returnValue.FirstOrDefault();  
+            Assert.Equal(2, idea?.Id);
+        }
+   
+
+    }
+
+ 
+ ```
+    
+    
 >Let's add more functionality
 
 Add a folder named Models.
